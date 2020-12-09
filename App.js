@@ -5,13 +5,12 @@ import { StyleSheet, Text, View } from 'react-native';
 //Components
 
 import NavigationMenu from './components/Navigation';
-//import Map from './components/Map';
 import TitleBar from './components/TitleBar'
 
 export default App = () => {
   return (
     <View style={styles.container}>
-      <TitleBar title="Mindervalide"/>
+      <TitleBar title="Mindervalide Parkings"/>
       <NavigationMenu/>
       <StatusBar style="auto" translucent={false} />
     </View>

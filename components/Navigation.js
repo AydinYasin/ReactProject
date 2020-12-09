@@ -24,7 +24,6 @@ export default Navigation = (props) => {
   const styles = StyleSheet.create({
     footer: {
       flex: 1,
-      backgroundColor: 'green',
       alignItems: 'stretch',
     }
   });

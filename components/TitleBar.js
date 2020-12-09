@@ -12,7 +12,7 @@ export default TitleBar = (props) => {
 const styles = StyleSheet.create({
     titleBar: {
       height: 70,
-      backgroundColor: 'red',
+      backgroundColor: 'white',
       alignItems: 'stretch',
       justifyContent: 'center',
     },
