@@ -8,7 +8,7 @@ export default Info = (props) => {
 const AdresView = (props) => {
     return (
     <View style={styles.infoAdres}>
-    <Text key={props.key.key.OBJECTID}>{props.adres.ADRES}</Text>
+    <Text>{props.adres.ADRES}</Text>
     </View>
 );
 }
@@ -39,7 +39,7 @@ return(
 <View style={styles.infoContainer}>
     <ActivityIndicator color="black" animating={loading}/>
 <ScrollView>
-        {adres.map((a) => <AdresView key={a.properties} adres={a.properties}/>)}
+        {adres.map((a) => <AdresView adres={a.properties}/>)}
 </ScrollView>
 
 </View>
