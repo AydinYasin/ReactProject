@@ -6,7 +6,8 @@ export default Info = (props) => {
 const AdresView = (props) => {
     return (
     <View style={styles.infoAdres}>
-    <Text>{props.adres.ADRES}</Text>
+    <Text>{props.adres.naam}</Text>
+    <Text>{props.adres.straat} {props.adres.huisnummer}</Text>
     </View>
 );
 }
@@ -17,7 +18,7 @@ const [loading, setLoading] = useState(false);
 const loadDetails = async() => {
     try{
         setLoading(true);
-        let response = await fetch('https://opendata.arcgis.com/datasets/c6152054d1d140bfa02ee5bdbf2d8e1b_585.geojson');
+        let response = await fetch('https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek6/MapServer/643/query?where=1%3D1&outFields=*&outSR=4326&f=json');
         let json = await response.json();
     
         setDetails(json.features);
@@ -37,7 +38,7 @@ return(
 <View style={styles.infoContainer}>
     <ActivityIndicator color="black" animating={loading}/>
 <ScrollView>
-        {adres.map((a) => <AdresView adres={a.properties}/>)}
+        {adres.map((a) => <AdresView adres={a.attributes}/>)}
 </ScrollView>
 
 </View>

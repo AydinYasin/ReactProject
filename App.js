@@ -10,7 +10,7 @@ import TitleBar from './components/TitleBar'
 export default App = () => {
   return (
     <View style={styles.container}>
-      <TitleBar title="Mindervalide Parkings"/>
+      <TitleBar title="Sporthals in Antwerpen"/>
       <NavigationMenu/>
       <StatusBar style="auto" translucent={false} />
     </View>

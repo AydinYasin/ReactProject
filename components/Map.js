@@ -1,23 +1,23 @@
 import MapView, { Marker } from'react-native-maps';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Alert } from 'react-native';
+import { StyleSheet, View, Alert, ActivityIndicator } from 'react-native';
 
 export default MapContainer = (props) => {
 
     const [adresses,setAdresses] = useState([]);
-    //const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const loadDetails = async() => {
         try{
-            //setLoading(true);
-            let response = await fetch('https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek6/MapServer/585/query?where=1%3D1&outFields=*&outSR=4326&f=json')
+            setLoading(true);
+            let response = await fetch('https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek6/MapServer/643/query?where=1%3D1&outFields=*&outSR=4326&f=json')
             .then((res => res.json()));
             setAdresses(response.features);
-            //setLoading(false);
+            setLoading(false);
         }
         catch (error){
             Alert.alert('Cannot load map, contact admin!');
-            //setLoading(false);
+            setLoading(false);
         }
     };
     useEffect(() => {
@@ -27,10 +27,11 @@ export default MapContainer = (props) => {
 
     return(
     <View style={styles.mapContainer}>
+        <ActivityIndicator color="black" animating={loading}/>
         <MapView style={styles.mapStyle} 
         initialRegion={{latitude: 51.219448,longitude: 4.402464,latitudeDelta: 0.0992,longitudeDelta: 0.0421}}>  
             {adresses.map((a) =>
-            <Marker
+            <Marker style={styles.markerStyle}
                 key={a.attributes.OBJECTID}
                 coordinate={{latitude: a.geometry.y,longitude: a.geometry.x}}
                 title="AP"
@@ -51,5 +52,10 @@ mapContainer: {
 },
 mapStyle: {
     flex: 1
+},
+markerStyle: {
+    width: 10,
+    height: 10,
+    backgroundColor: 'blue'
 }
 });
