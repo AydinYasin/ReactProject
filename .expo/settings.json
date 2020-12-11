@@ -1,9 +1,8 @@
 {
-  "scheme": null,
   "hostType": "lan",
   "lanType": "ip",
   "dev": true,
   "minify": false,
-  "urlRandomness": "rs-bei",
+  "urlRandomness": null,
   "https": false
 }

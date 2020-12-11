@@ -4,16 +4,16 @@ import { StyleSheet, View, Alert } from 'react-native';
 
 export default MapContainer = (props) => {
 
-    const [adres,setDetails] = useState([]);
+    const [adresses,setAdresses] = useState([]);
     //const [loading, setLoading] = useState(false);
 
     const loadDetails = async() => {
         try{
             //setLoading(true);
-            let response = await fetch('https://opendata.arcgis.com/datasets/c6152054d1d140bfa02ee5bdbf2d8e1b_585.geojson');
-            let json = await response.json();
-        
-            setDetails(json.features);
+            let response = await fetch('https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek6/MapServer/585/query?where=1%3D1&outFields=*&outSR=4326&f=json')
+            .then((res => res.json()));
+            console.log(response);
+            setAdresses(response);
             //setLoading(false);
         }
         catch (error){
@@ -23,7 +23,6 @@ export default MapContainer = (props) => {
     };
     useEffect(() => {
         loadDetails();
-        console.log('data fetched corrctly!');
     }, []);
 
 
@@ -31,10 +30,13 @@ export default MapContainer = (props) => {
     <View style={styles.mapContainer}>
         <MapView style={styles.mapStyle} 
         initialRegion={{latitude: 51.219448,longitude: 4.402464,latitudeDelta: 0.0992,longitudeDelta: 0.0421}}>  
-            {adres.map((a) => 
+            {Array.from(adresses).map((a) => 
             <Marker
-            coordinate={{latitude: a.geometry.coordinates[0],longitude: a.geometry.coordinates[1]}}
-            />)}
+                key={a.properties.OBJECTID}
+                coordinate={{latitude: a.geometry.x,longitude: a.geometry.y}}
+                title="AP"
+                description="Test"
+            ></Marker>)}
         </MapView>
     </View>
 
