@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, Alert, ActivityIndicator } from 'react-native';
 
-
-
 export default Info = (props) => {
 
 const AdresView = (props) => {
