@@ -12,8 +12,7 @@ export default MapContainer = (props) => {
             //setLoading(true);
             let response = await fetch('https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek6/MapServer/585/query?where=1%3D1&outFields=*&outSR=4326&f=json')
             .then((res => res.json()));
-            console.log(response);
-            setAdresses(response);
+            setAdresses(response.features);
             //setLoading(false);
         }
         catch (error){
@@ -30,13 +29,14 @@ export default MapContainer = (props) => {
     <View style={styles.mapContainer}>
         <MapView style={styles.mapStyle} 
         initialRegion={{latitude: 51.219448,longitude: 4.402464,latitudeDelta: 0.0992,longitudeDelta: 0.0421}}>  
-            {Array.from(adresses).map((a) => 
+            {adresses.map((a) =>
             <Marker
-                key={a.properties.OBJECTID}
-                coordinate={{latitude: a.geometry.x,longitude: a.geometry.y}}
+                key={a.attributes.OBJECTID}
+                coordinate={{latitude: a.geometry.y,longitude: a.geometry.x}}
                 title="AP"
                 description="Test"
             ></Marker>)}
+            
         </MapView>
     </View>
 
