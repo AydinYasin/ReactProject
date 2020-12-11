@@ -4,17 +4,23 @@ import { StyleSheet, Text, View } from 'react-native';
 export default TitleBar = (props) => {
     return(
        <View style={styles.titleBar}>
-          <Text>{props.title}</Text>
+          <Text style={styles.titleTekst}>{props.title}</Text>
         </View>
     )
 };
 
 const styles = StyleSheet.create({
     titleBar: {
-      height: 70,
-      backgroundColor: 'white',
+      height: 60,
+      backgroundColor: '#d0e8f2',
       alignItems: 'stretch',
       justifyContent: 'center',
     },
+    titleTekst: {
+      fontSize: 22,
+      textAlign: 'center',
+      fontFamily: 'monospace',
+      textTransform: 'capitalize'
+    }
   });
   

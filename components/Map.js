@@ -1,11 +1,19 @@
-import MapView, { Marker } from'react-native-maps';
+import MapView, { Callout, Marker } from'react-native-maps';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Alert, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Alert, ActivityIndicator, Text } from 'react-native';
 
 export default MapContainer = (props) => {
 
     const [adresses,setAdresses] = useState([]);
     const [loading, setLoading] = useState(false);
+
+    const loadingStatus = (props) => {
+        return (
+        <View>
+        <ActivityIndicator color="black" animating={loading}/>
+        </View>
+    );
+    }
 
     const loadDetails = async() => {
         try{
@@ -27,17 +35,22 @@ export default MapContainer = (props) => {
 
     return(
     <View style={styles.mapContainer}>
-        <ActivityIndicator color="black" animating={loading}/>
+        {adresses === undefined ? <loadDetails/> : false}
         <MapView style={styles.mapStyle} 
         initialRegion={{latitude: 51.219448,longitude: 4.402464,latitudeDelta: 0.0992,longitudeDelta: 0.0421}}>  
             {adresses.map((a) =>
             <Marker style={styles.markerStyle}
                 key={a.attributes.OBJECTID}
                 coordinate={{latitude: a.geometry.y,longitude: a.geometry.x}}
-                title="AP"
-                description="Test"
-            ></Marker>)}
-            
+            >
+                <Callout tooltip>
+                    <View>
+                        <View style={styles.bubble}>
+                            <Text>{a.attributes.naam}</Text>
+                        </View>
+                    </View>
+                </Callout>
+            </Marker>)}
         </MapView>
     </View>
 
@@ -57,5 +70,15 @@ markerStyle: {
     width: 10,
     height: 10,
     backgroundColor: 'blue'
+},
+bubble: {
+    flexDirection: 'row',
+    alignSelf: 'flex-start',
+    backgroundColor: '#fff',
+    borderRadius: 6,
+    borderColor: '#ccc',
+    borderWidth: 0.5,
+    padding: 10,
+    width: 150
 }
 });

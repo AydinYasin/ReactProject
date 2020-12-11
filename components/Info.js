@@ -6,7 +6,7 @@ export default Info = (props) => {
 const AdresView = (props) => {
     return (
     <View style={styles.infoAdres}>
-    <Text>{props.adres.naam}</Text>
+    <Text  style={styles.infoAdres}>{props.adres.naam}</Text>
     <Text>{props.adres.straat} {props.adres.huisnummer}</Text>
     </View>
 );
