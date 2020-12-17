@@ -66,11 +66,6 @@ mapContainer: {
 mapStyle: {
     flex: 1
 },
-markerStyle: {
-    width: 10,
-    height: 10,
-    backgroundColor: 'blue'
-},
 bubble: {
     flexDirection: 'row',
     alignSelf: 'flex-start',

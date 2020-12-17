@@ -3,15 +3,6 @@ import { StyleSheet, Text, View, ScrollView, Alert, ActivityIndicator } from 're
 
 export default Info = (props) => {
 
-const AdresView = (props) => {
-    return (
-    <View style={styles.infoAdres}>
-    <Text  style={styles.infoAdres}>{props.adres.naam}</Text>
-    <Text>{props.adres.straat} {props.adres.huisnummer}</Text>
-    </View>
-);
-}
-
 const [adres, setDetails] = useState([]);
 const [loading, setLoading] = useState(false);
 
@@ -34,6 +25,18 @@ useEffect(() => {
     loadDetails();
 }, []);
 
+const AdresView = (props) => {
+    for (let index = 0; index < adres.length; index++) {
+    
+    return (
+    <View style={styles.infoAdres}>
+    <Text key={props.adres.id} style={styles.infoAdres}>{props.adres.naam}</Text>    
+    <Text key={props.adres.id + index}>{props.adres.straat} {props.adres.huisnummer}</Text>
+    </View>
+);
+}
+}
+
 return(
 <View style={styles.infoContainer}>
     <ActivityIndicator color="black" animating={loading}/>
@@ -54,5 +57,6 @@ infoContainer: {
 },
 infoAdres: {
     padding: 5,
+    
 }
 });

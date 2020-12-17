@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
       fontSize: 22,
       textAlign: 'center',
       fontFamily: 'monospace',
-      textTransform: 'capitalize'
+      textTransform: 'capitalize',
+      color: 'grey'
     }
   });
   
