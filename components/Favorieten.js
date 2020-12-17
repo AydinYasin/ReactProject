@@ -6,7 +6,7 @@ export default Info = (props) => {
 
 return(
 <View style={styles.infoContainer}>
-    <Text>Here will be your favo</Text>
+    <Text>Here will be our favo</Text>
 </View>
 )
 };
